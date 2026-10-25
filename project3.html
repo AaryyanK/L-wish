@@ -1207,6 +1207,9 @@ async function startMicrophone() {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     audioContext = new AudioContextClass();
     await audioContext.resume();
+     if (music) {
+    music.play().catch(error => console.log("Music resume:", error));
+}
 
     const source = audioContext.createMediaStreamSource(micStream);
     analyser = audioContext.createAnalyser();
